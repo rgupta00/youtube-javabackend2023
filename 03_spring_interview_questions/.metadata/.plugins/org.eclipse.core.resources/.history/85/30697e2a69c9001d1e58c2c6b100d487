@@ -1,0 +1,14 @@
+package com.demo;
+
+public class Foo {
+	private Bar bar;
+
+	public void setBar(Bar bar) {
+		this.bar = bar;
+	}
+	
+	public void printValue() {
+		System.out.println(bar.getBarValue());
+	}
+
+}

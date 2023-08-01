@@ -1,0 +1,39 @@
+package com.productapp.config;
+
+import javax.sql.DataSource;
+
+import org.hibernate.SessionFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+//Spring jdbc 
+@Configuration
+@ComponentScan(basePackages = {"com.productapp"})
+@EnableTransactionManagement
+@PropertySource("classpath:db.properties")
+@Import(DbConfig.class)
+public class AppConfig {
+
+	
+	@Bean
+	public LocalSessionFactoryBean localSessionFactoryBean(DataSource dataSource) {
+		LocalSessionFactoryBean factoryBean=new LocalSessionFactoryBean();
+		factoryBean.setDataSource(dataSource);
+		
+		
+		return factoryBean;
+	}
+	
+	@Bean
+	public HibernateTransactionManager hibernateTransactionManager(SessionFactory sessionFactory) {
+		HibernateTransactionManager hibTxMgr=new HibernateTransactionManager();
+		hibTxMgr.setSessionFactory(sessionFactory);
+		return hibTxMgr;
+	}
+}

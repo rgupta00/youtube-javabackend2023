@@ -1,0 +1,16 @@
+package com.demo;
+import java.util.*;
+public class Demo {
+	public static void main(String[] args) {
+		List<String> names=new ArrayList<>();
+		
+		names.add("foo");
+		names.add("bar");
+		names.add("jar");
+		names.add("car");
+		
+		
+		
+	}
+
+}

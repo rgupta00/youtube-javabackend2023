@@ -1,0 +1,37 @@
+package com.productapp.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
+
+import com.productapp.dao.ProductDao;
+import com.productapp.dao.ProductDaoImplArrrayList;
+import com.productapp.dao.ProductDaoImplJdbc;
+import com.productapp.service.ProductService;
+import com.productapp.service.ProductServiceImpl;
+
+@Configuration
+@ComponentScan(basePackages = { "com.productapp" })
+public class AppConfig {
+
+	@Bean(name = "productservice")
+	public ProductService getProductService(ProductDao productDao) {
+		ProductService productService = new ProductServiceImpl(productDao);
+		return productService;
+	}
+
+	@Primary
+	@Bean(name = "dao1")
+	public ProductDao daoArrayList() {
+		return new ProductDaoImplArrrayList();
+	}
+
+	@Bean(name = "dao2")
+	public ProductDao daoJdbc() {
+		return new ProductDaoImplJdbc();
+	}
+
+}

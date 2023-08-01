@@ -1,0 +1,16 @@
+package com.curd;
+import java.sql.*;
+public class JdbcHelloWorld {
+	
+	public static void main(String[] args) {
+		//i want to connect to youtubedb db and table is product
+		
+		try{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("driver is loaded");
+		}catch(ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+}

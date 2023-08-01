@@ -1,0 +1,2 @@
+Java thread life cycle
+https://howtodoinjava.com/java/multi-threading/java-thread-life-cycle-and-thread-states/

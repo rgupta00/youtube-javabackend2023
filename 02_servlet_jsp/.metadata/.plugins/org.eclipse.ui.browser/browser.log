@@ -1,0 +1,7 @@
+
+Mar 03, 2023 15:16:02.258 NEW SESSION
+Mar 03, 2023 15:16:02.259 MESA-INTEL: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
+Mar 03, 2023 15:16:02.259 
+Mar 03, 2023 15:16:02.270 Opening in existing browser session.
+Mar 03, 2023 15:16:02.353 libva error: /usr/lib/x86_64-linux-gnu/dri/iHD_drv_video.so init failed
+Mar 03, 2023 15:16:02.353 libva error: /usr/lib/x86_64-linux-gnu/dri/i965_drv_video.so init failed

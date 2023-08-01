@@ -1,0 +1,60 @@
+package com.productapp.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.productapp.entity.Product;
+
+@Repository
+public class ProductDaoImpl implements ProductDao {
+
+	private EntityManager em;
+	
+	
+	@Autowired
+	public ProductDaoImpl(EntityManager em) {
+		this.em = em;
+	}
+	
+	@Override
+	public List<Product> getAll() {
+		return em.createQuery("select p from Product p", Product.class).getResultList();
+	}
+
+	@Override
+	public Product addProduct(Product product) {
+		 em.persist(product);
+		 return product;
+	}
+
+	@Override
+	public Product getById(int productId) {
+		return em.find(Product.class, productId);
+	}
+
+	@Override
+	public void deleteProduct(int productId) {
+		Product productToDelete= getById(productId);
+		em.remove(productToDelete);
+	}
+
+	@Override
+	public void updateProduct(int productId, double productPrice) {
+		Product productToUpdate= getById(productId);
+		productToUpdate.setPrice(productPrice);
+		em.merge(productToUpdate);
+	}
+
+}
+
+
+
+
+

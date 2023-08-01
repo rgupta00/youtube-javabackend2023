@@ -1,0 +1,85 @@
+package com.productapp.dao;
+
+import java.sql.*;
+
+import com.productapp.dto.Product;
+import com.productapp.exceptions.ProductNotFoundException;
+import com.productapp.util.JdbcConnectionFactory;
+import java.util.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class ProductDaoImpl implements ProductDao {
+
+	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	public ProductDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	@Override
+	public List<Product> getAll() {
+		return jdbcTemplate.query("select * from product", new BeanPropertyRowMapper<Product>(Product.class));
+	}
+
+	@Override
+	public Product addProduct(Product product) {
+		KeyHolder holder = new GeneratedKeyHolder();
+
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = con.prepareStatement("insert into product(name,price) values (?,?)",
+						Statement.RETURN_GENERATED_KEYS);
+				pstmt.setString(1, product.getName());
+				pstmt.setDouble(2, product.getPrice());
+
+				return pstmt;
+			}
+		}, holder);
+
+		int genPk = holder.getKey().intValue();
+		product.setId(genPk);
+		return product;
+	}
+
+	@Override
+	public Product getById(int productId) {
+		return jdbcTemplate.queryForObject("select * from product where id=?", new ProductRowMapper(), productId);
+	}
+
+	@Override
+	public void deleteProduct(int productId) {
+		jdbcTemplate.update("delete from product where id=?", productId);
+	}
+
+	@Override
+	public void updateProduct(int productId, double productPrice) {
+		jdbcTemplate.update("update product set price=? where id=?", new Object[] { productPrice, productId });
+
+	}
+
+	@Override
+	public void truncateProductTable() {
+		jdbcTemplate.execute("truncate table product");
+	}
+
+	@Override
+	public void insertBatch(List<Product> products) {
+		ArrayList<Object[]> batchArgs = new ArrayList<Object[]>();
+		for (Product product : products) {
+			Object[] pData = { product.getName(), product.getPrice() };
+			batchArgs.add(pData);
+		}
+		jdbcTemplate.batchUpdate("insert into product(name,price) values (?,?)", batchArgs);
+	}
+
+}

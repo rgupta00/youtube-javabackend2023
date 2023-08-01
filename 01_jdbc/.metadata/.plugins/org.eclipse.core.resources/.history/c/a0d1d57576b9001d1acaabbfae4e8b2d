@@ -1,0 +1,41 @@
+package com.curd.factory;
+import java.io.*;
+import java.sql.*;
+import java.util.Properties;
+public class JdbcConnectionFactory {
+
+	private static Connection connection=null;
+	
+	private JdbcConnectionFactory() {}
+	
+	public static Connection getConnection() {
+		
+		Properties properties= new Properties();
+		
+		try {
+			InputStream is=new FileInputStream("db.properties");
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("driver is loaded");
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		
+		try {
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/youtubedb", "root", "root");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return connection;
+		
+	}
+	
+}

@@ -1,0 +1,16 @@
+package com.demo;
+
+public class Foo {
+
+	private String message;
+
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	public void print() {
+		System.out.println("printing value of message: "+ message);
+	}
+	
+}

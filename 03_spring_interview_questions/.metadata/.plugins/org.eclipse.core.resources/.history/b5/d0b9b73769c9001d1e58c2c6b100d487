@@ -1,0 +1,14 @@
+package com.demo;
+
+import java.time.LocalDateTime;
+import java.util.Random;
+
+public class Bar {
+	private String time = LocalDateTime.now().toString();
+	private int tempValue = new Random().nextInt(10);
+
+	public String getBarValue() {
+		return "value is " + time + " : " + tempValue;
+	}
+
+}

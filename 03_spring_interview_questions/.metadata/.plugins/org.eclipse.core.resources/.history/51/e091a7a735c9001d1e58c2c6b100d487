@@ -1,0 +1,24 @@
+package com.productapp.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
+
+import com.productapp.service.ProductService;
+import com.productapp.service.ProductServiceImpl;
+
+public class Main {
+
+	public static void main(String[] args) {
+	
+		ProductService productService = new ProductServiceImpl();
+	
+		List<String> list = productService.getAll();
+		list.forEach(product -> System.out.println(product));
+
+	}
+}

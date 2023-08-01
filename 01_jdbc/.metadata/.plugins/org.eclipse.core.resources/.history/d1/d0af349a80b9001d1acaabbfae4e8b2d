@@ -1,0 +1,29 @@
+package com.curd2;
+
+import java.sql.*;
+
+import com.curd.factory.JdbcConnectionFactory;
+
+public class B_GettingDatabaseMetaData {
+
+	public static void main(String[] args) {
+
+		try (Connection connection = JdbcConnectionFactory.getConnection()) {
+
+			System.out.println("conn is done");
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from product");
+			
+			ResultSetMetaData rsMt=rs.getMetaData();
+			System.out.println("no of columns: "+ rsMt.getColumnCount());
+			
+			for(int i=1;i<rsMt.getColumnCount(); i++) {
+				System.out.println(rsMt.getColumnClassName(i));
+			}
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+}

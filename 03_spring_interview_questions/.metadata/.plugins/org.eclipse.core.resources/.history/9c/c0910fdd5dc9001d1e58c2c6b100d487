@@ -1,0 +1,25 @@
+package com.demo;
+
+public class Foo {
+
+	private String message;
+
+	public Foo() {
+		System.out.println("foo default ctr");
+	}
+
+	public void xmlWalaInit() {
+		System.out.println("xmlWalaInit is called");
+	}
+	public void setMessage(String message) {
+		System.out.println("foo setMessage is called");
+		this.message = message;
+	}
+	
+	public void print() {
+		System.out.println("printing value of message: "+ message);
+	}
+	
+	
+	
+}

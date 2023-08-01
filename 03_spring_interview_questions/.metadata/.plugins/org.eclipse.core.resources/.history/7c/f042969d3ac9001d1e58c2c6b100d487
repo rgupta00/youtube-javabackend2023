@@ -1,0 +1,35 @@
+package com.productapp.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.productapp.dao.ProductDao;
+import com.productapp.dao.ProductDaoImplArrrayList;
+import com.productapp.dao.ProductDaoImplJdbc;
+/*
+ * <bean id="productservice" class="com.productapp.service.ProductServiceImpl" 
+		autowire="byType">
+	</bean>
+	1. field XX
+	2. setter
+	3. ctr
+	
+ */
+@Service(value ="productservice" )
+public class ProductServiceImpl implements ProductService {
+
+	private ProductDao productDao;
+
+	public void setProductDao(ProductDao productDao) {
+		this.productDao = productDao;
+	}
+
+	@Override
+	public List<String> getAll() {
+
+		return productDao.getAll();
+	}
+
+}

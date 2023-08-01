@@ -1,0 +1,24 @@
+package com.curd;
+
+import java.sql.*;
+
+import com.curd.factory.JdbcConnectionFactory;
+
+public class D_AddProduct {
+
+	public static void main(String[] args) {
+
+		try (Connection connection = JdbcConnectionFactory.getConnection()) {
+
+			System.out.println("conn is done");
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from product");
+			while (rs.next()) {
+				System.out.println(rs.getInt(1) + ": " + rs.getString(2) + ": " + rs.getDouble(3));
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,29 @@
+package com.curd;
+
+import java.sql.*;
+
+import com.curd.factory.JdbcConnectionFactory;
+
+public class C_JdbcHelloWorld3 {
+
+	//connection factory aka simple factory design pattern
+	//prop file : username password url 
+	public static void main(String[] args) {
+		// i want to connect to youtubedb db and table is product
+
+		
+
+		try(Connection connection =JdbcConnectionFactory.getConnection()) {
+		
+			System.out.println("conn is done");
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from product");
+			while (rs.next()) {
+				System.out.println(rs.getInt(1) + ": " + rs.getString(2) + ": " + rs.getDouble(3));
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} 
+	}
+
+}

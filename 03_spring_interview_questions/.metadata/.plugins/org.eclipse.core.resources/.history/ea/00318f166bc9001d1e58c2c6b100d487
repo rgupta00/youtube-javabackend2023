@@ -1,0 +1,22 @@
+package com.demo;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class Main {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		AnnotationConfigApplicationContext ctx = 
+				new AnnotationConfigApplicationContext(AppConfig.class);
+		
+		Bar bar=ctx.getBean("bar",Bar.class);
+		System.out.println(bar.getTodaysTemp());
+		
+		Thread.sleep(1000);
+		
+		System.out.println(bar.getTodaysTemp());
+		
+
+
+	}
+}

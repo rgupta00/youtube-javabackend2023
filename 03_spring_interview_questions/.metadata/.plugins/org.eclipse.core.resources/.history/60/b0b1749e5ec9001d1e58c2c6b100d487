@@ -1,0 +1,37 @@
+package com.demo;
+
+import org.springframework.beans.factory.InitializingBean;
+
+public class Foo implements InitializingBean{
+
+	private String message;
+
+	public Foo() {
+		System.out.println("foo default ctr");
+	}
+
+	public void xmlWalaInit() {
+		System.out.println("xmlWalaInit is called");
+	}
+	
+	public void xmlWalaDestroy() {
+		System.out.println("xmlWalaDestroy is called");
+	}
+	
+	public void setMessage(String message) {
+		System.out.println("foo setMessage is called");
+		this.message = message;
+	}
+	
+	public void print() {
+		System.out.println("printing value of message: "+ message);
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("afterPropertiesSet of InitializingBean is called");
+	}
+	
+	
+	
+}

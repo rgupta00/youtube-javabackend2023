@@ -1,0 +1,8 @@
+package com.demo;
+
+import org.springframework.beans.factory.config.BeanPostProcessor;
+
+public class BPP1 implements BeanPostProcessor {
+
+	
+}

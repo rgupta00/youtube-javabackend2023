@@ -1,0 +1,29 @@
+package com.curd;
+
+import java.sql.*;
+
+import com.curd.factory.JdbcConnectionFactory;
+
+public class E_UpdateProduct {
+
+	public static void main(String[] args) {
+
+		try (Connection connection = JdbcConnectionFactory.getConnection()) {
+			
+			//Statement vs PreparedStatement vs CallableStatement
+			
+			PreparedStatement pstmt=connection.prepareStatement("update product set price=? where id=?");
+			
+			pstmt.setDouble(1, .21);
+			
+			pstmt.setInt(2, 3);
+			
+			int noOfRows= pstmt.executeUpdate();
+			
+			System.out.println(noOfRows);
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+}

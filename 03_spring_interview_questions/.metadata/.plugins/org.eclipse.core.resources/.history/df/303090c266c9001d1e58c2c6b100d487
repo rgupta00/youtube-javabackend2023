@@ -1,0 +1,30 @@
+package com.demo;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+/*
+ * <bean id="foo" class="com.demo.Foo">
+		<property name="message" value="Foo value"/>
+	</bean>
+
+	<bean class="com.demo.BPP1"/>
+	<bean class="com.demo.BPP2"/>
+	
+	<bean class="com.demo.BeanFactoryPP"/>
+	<!-- aka bean factory pp that is used to read the prop file and populate into fields of a pojo -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"></bean>
+ */
+@Configuration
+@ComponentScan(basePackages = {"com.demo"})
+public class AppConfig {
+	
+	@Bean(name="foo")
+	public Foo getFoo() {
+		Foo foo=new Foo();
+		foo.setMessage("initial foo message");
+		return foo;
+	}
+
+}

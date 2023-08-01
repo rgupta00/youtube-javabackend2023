@@ -1,0 +1,28 @@
+package com.demo;
+
+import java.util.Random;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+
+/*
+ * 1. proxyMode = ScopedProxyMode.TARGET_CLASS use
+ */
+@Component(value = "bar")
+@Scope(value="prototype")
+ public class Bar {
+	private int tempValue;
+
+	
+	public Bar() {
+		System.out.println("default ctr is called");
+		tempValue = new Random().nextInt(100);
+	}
+
+
+	public String getBarValue() {
+		return "value is : " + tempValue;
+	}
+
+}

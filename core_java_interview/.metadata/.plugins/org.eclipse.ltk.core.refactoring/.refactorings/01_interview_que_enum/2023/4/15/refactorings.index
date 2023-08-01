@@ -1,0 +1,7 @@
+1681347866814	Rename resource 'b-enum'
+1681348645584	Delete element
+1681349491443	Extract local variable 'values'
+1681352219273	Extract local variable 'values'
+1681353887228	Extract local variable 'keySet'
+1681353973554	Extract local variable 'entrySet'
+1681354083635	Rename type 'E_SingletonAndEnum'

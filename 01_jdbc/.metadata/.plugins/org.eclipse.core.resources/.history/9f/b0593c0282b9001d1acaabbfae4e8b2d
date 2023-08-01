@@ -1,0 +1,23 @@
+package com.curd2;
+
+import java.sql.*;
+
+import com.curd.factory.JdbcConnectionFactory;
+
+public class C_BatchProcessingJdbc {
+
+	public static void main(String[] args) {
+
+		try (Connection connection = JdbcConnectionFactory.getConnection()) {
+			
+			String query="insert into product(name, price) values (?,?)";
+			PreparedStatement pstmt=connection.prepareStatement(query);
+			
+			
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+}

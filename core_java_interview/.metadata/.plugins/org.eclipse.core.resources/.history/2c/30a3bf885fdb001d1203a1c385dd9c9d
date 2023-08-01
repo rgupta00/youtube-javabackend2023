@@ -1,0 +1,11 @@
+package com.demo;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		Person person1 = new Person(2, "amit", 45);
+		System.out.println(person1);
+
+	}
+
+}

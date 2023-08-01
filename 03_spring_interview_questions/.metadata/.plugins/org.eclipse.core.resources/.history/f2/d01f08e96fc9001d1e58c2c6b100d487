@@ -1,0 +1,31 @@
+package com.demo;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component(value = "foo")
+@Scope(value="singleton")
+public class Foo implements ApplicationContextAware {
+	
+	private ApplicationContext applicationContext;
+	
+//	private Bar bar;
+//	
+//	@Autowired
+//	public void setBar(Bar bar) {
+//		this.bar = bar;
+//	}
+	
+	public void printValue() {
+		System.out.println(applicationContext.getBean("bar", Bar.class).getBarValue());
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext=applicationContext;
+	}
+}

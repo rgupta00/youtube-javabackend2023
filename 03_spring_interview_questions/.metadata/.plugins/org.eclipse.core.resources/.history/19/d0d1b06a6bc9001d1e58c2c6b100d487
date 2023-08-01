@@ -1,0 +1,28 @@
+package com.demo;
+
+import java.time.LocalDateTime;
+import java.util.Random;
+
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+@Component(value = "bar")
+@Scope(value="prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class Bar {
+	private String time;
+	private int tempValue;
+
+	
+	public Bar() {
+		System.out.println("default ctr is called");
+		time = LocalDateTime.now().toString();
+		tempValue = new Random().nextInt(100);
+	}
+
+
+	public String getBarValue() {
+		return "value is " + time + " : " + tempValue;
+	}
+
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="07_spring_life_cycle"/>
+<aop-project name="09_injecting_prototype_in_singleton"/>
+<aop-project name="06_productappV1_xml_profile"/>
+<aop-project name="01_productappV1_xml"/>
+<aop-project name="08_spring_life_cycle_javaconfig"/>
+<aop-project name="03_productappV1_javaconfig_1"/>
+<aop-project name="02_productappV1_anno"/>
+</aop-reference-model>
